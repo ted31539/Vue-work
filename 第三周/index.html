@@ -59,15 +59,19 @@
           },
           methods: {
             login() {
-              axios.post(`${this.url}admin/signin`, this.data)
+              axios.post(`${url}admin/signin`, data)
                 .then((res) => {
                   console.log(res);
                   if(res.data.success){
                     const {token, expired} = res.data;
                     console.log(token, expired);
                     document.cookie = `hexToken = ${token}; expires = ${new Date(expired)}`;
+                  }else {
+                    console.log(res.data.message);
                   }
-                })
+                }).catch((err) => {
+                  console.log(err);
+                });
               }
     
           },
