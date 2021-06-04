@@ -41,7 +41,6 @@
           &copy; 2021~∞ - 六角學院
         </p>
       </div>
-{{ data }}
     </div>
 
 
@@ -53,19 +52,21 @@
                     "username": "",
                     "password": ""
                 },
-                url: "https://vue3-course-api.hexschool.io/",
-                path: "ted31539"               
+                apiUrl: "https://vue3-course-api.hexschool.io/",
+                apiPath: "ted31539"               
             };
           },
           methods: {
             login() {
-              axios.post(`${url}admin/signin`, data)
+              axios.post(`${this.apiUrl}admin/signin`, this.data)
                 .then((res) => {
                   console.log(res);
                   if(res.data.success){
                     const {token, expired} = res.data;
                     console.log(token, expired);
-                    document.cookie = `hexToken = ${token}; expires = ${new Date(expired)}`;
+                    document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`;
+                    window.location = 'index2.html';
+                    
                   }else {
                     console.log(res.data.message);
                   }
@@ -73,9 +74,11 @@
                   console.log(err);
                 });
               }
+           
     
           },
           created() {
+            
     
           }
         });
