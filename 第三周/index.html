@@ -14,7 +14,7 @@
 
   <body>
     <div id="app">
-      <div class="container">git
+      <div class="container">
         <div class="row justify-content-center">
           <h1 class="h3 mb-3 font-weight-normal">
             請先登入
@@ -41,7 +41,7 @@
           &copy; 2021~∞ - 六角學院
         </p>
       </div>
-{{ data.username, data.password }}
+{{ data }}
     </div>
 
 
@@ -59,7 +59,7 @@
           },
           methods: {
             login() {
-              axios.post(`${url}admin/signin`, data)
+              axios.post(`${this.url}admin/signin`, this.data)
                 .then((res) => {
                   console.log(res);
                   if(res.data.success){
@@ -76,6 +76,15 @@
     
           },
           created() {
+        //     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, "$1"); //token加入cookie
+        // // console.log(token);
+        //     axios.defaults.headers.common['Authorization'] = token; //將token夾帶入header
+        //     // axios.post(`${this.url}api/user/check`)
+        //     //  .then((res) => {
+        //     //   if(res.data.success) {
+        //     //     console.log(res);
+        //     //   }            
+        //     //  })
     
           }
         });
